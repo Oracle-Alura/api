@@ -1,0 +1,1 @@
+ALTER TABLE medicos ADD urbanizacion varchar(20) not null;

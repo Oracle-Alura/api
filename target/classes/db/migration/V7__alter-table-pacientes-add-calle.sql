@@ -1,0 +1,1 @@
+ALTER TABLE pacientes ADD calle varchar(20) not null;
