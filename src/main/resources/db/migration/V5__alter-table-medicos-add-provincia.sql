@@ -1,0 +1,1 @@
+ALTER TABLE medicos ADD provincia varchar(20) not null;
