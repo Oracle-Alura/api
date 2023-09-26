@@ -1,6 +1,7 @@
 package med.voll.api.infra.errores;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +22,19 @@ public class TratadorDeErrores {
         return ResponseEntity.badRequest().body(errores); //Aqui le digo que retirne un error 400
 
     }
+
+    @ExceptionHandler(ValidacionDeIntegridad.class)
+    public ResponseEntity errorHandlerValidacioneDeIntegridad(Exception e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity errorHandlerValidacioneDeNegocio(Exception e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+
+    }
+
 
     //DTO para traer solo algunos datos de errores
     private record DatosErrorValidacion(String campo, String error) {

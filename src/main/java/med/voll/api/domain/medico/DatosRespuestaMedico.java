@@ -2,6 +2,11 @@ package med.voll.api.domain.medico;
 
 import med.voll.api.domain.direccion.DatosDireccion;
 
-public record DatosRespuestaMedico(Long id, String nombre, String especialidad, String email, String telefono,
-                                   DatosDireccion direccion) {
+public record DatosRespuestaMedico(
+        Long id,
+        String nombre,
+        String especialidad,
+        String email,
+        String telefono,
+        DatosDireccion direccion) {
 }

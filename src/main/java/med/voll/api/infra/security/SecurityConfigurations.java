@@ -25,8 +25,10 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf->csrf.disable())
                 .sessionManagement((sess-> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))) // Le indicamos a spring el tipo de sesion, la politica de creacion es STATELESS
-                .authorizeHttpRequests((request -> request.requestMatchers(HttpMethod.POST,"/login") // Cada request que haga match del tipo post y va para el login
-                        .permitAll() // Concede todos los permisos
+                .authorizeHttpRequests((request -> request
+                        .requestMatchers(HttpMethod.POST,"/login").permitAll() // Cada request que haga match del tipo post y va para el login  // Concede todos los permisos
+                        .requestMatchers("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll()
+
                         .anyRequest() // Los request que vayan despues
                         .authenticated())) // Debe ser autenticados
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
